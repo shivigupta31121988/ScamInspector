@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scaminspector.MainActivity
 import com.example.scaminspector.Models.ClassMessages
@@ -37,12 +38,26 @@ class MessagesAdapter(var context: Context, val mList: ArrayList<ClassMessages>)
         // sets the text to the textview from our itemHolder class
         holder.messageNumberView.text = ItemsViewModel.Number
 
-        holder.phishingButtonView.setOnClickListener {
+        holder.phishingButton.setOnClickListener {
             (context as MainActivity).sendEmail(
                 "shivithegame@gmail.com",
                 holder.messageNumberView.text.toString(),
                 holder.messageTextView.text.toString()
             )
+            holder.phishingButton.visibility = View.GONE
+            holder.reportedButton.visibility = View.VISIBLE
+        }
+
+        holder.reportedButton.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage("This is already reported, you want to report again?")
+                .setCancelable(true)
+                .setPositiveButton("Yes") { _,_ ->
+                    holder.reportedButton.visibility = View.GONE
+                    holder.phishingButton.visibility = View.VISIBLE
+                }
+            val alert = builder.create()
+            alert.show()
         }
     }
 
@@ -54,6 +69,7 @@ class MessagesAdapter(var context: Context, val mList: ArrayList<ClassMessages>)
     inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val messageTextView: TextView = itemView.findViewById(R.id.tvMessage)
         val messageNumberView: TextView = itemView.findViewById(R.id.tvNumber)
-        val phishingButtonView: Button = itemView.findViewById(R.id.btnPhishing)
+        val phishingButton: Button = itemView.findViewById(R.id.btnPhishing)
+        val reportedButton: Button = itemView.findViewById(R.id.tvReported)
     }
 }

@@ -64,6 +64,22 @@
                 android:textColor="@color/white"
 
                 />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:id="@+id/tvReported"
+                android:text="Reported"
+                android:clickable="true"
+                android:gravity="right"
+                android:visibility="invisible"
+                android:backgroundTint="@color/green"
+                app:layout_constraintTop_toBottomOf="@id/tvMessage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="@color/white"
+
+                ></Button>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
