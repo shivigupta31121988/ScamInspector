@@ -40,7 +40,7 @@ class MessagesAdapter(var context: Context, val mList: ArrayList<ClassMessages>)
 
         holder.phishingButton.setOnClickListener {
             (context as MainActivity).sendEmail(
-                "shivithegame@gmail.com",
+                R.string.recipient_email.toString(),
                 holder.messageNumberView.text.toString(),
                 holder.messageTextView.text.toString()
             )
