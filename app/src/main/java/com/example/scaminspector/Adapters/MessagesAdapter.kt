@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.res.TypedArrayUtils.getString
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scaminspector.MainActivity
 import com.example.scaminspector.Models.ClassMessages
@@ -40,7 +41,7 @@ class MessagesAdapter(var context: Context, val mList: ArrayList<ClassMessages>)
 
         holder.phishingButton.setOnClickListener {
             (context as MainActivity).sendEmail(
-                R.string.recipient_email.toString(),
+               context.getString(R.string.recipient_email),
                 holder.messageNumberView.text.toString(),
                 holder.messageTextView.text.toString()
             )
@@ -50,7 +51,7 @@ class MessagesAdapter(var context: Context, val mList: ArrayList<ClassMessages>)
 
         holder.reportedButton.setOnClickListener {
             val builder = AlertDialog.Builder(context)
-            builder.setMessage("This is already reported, you want to report again?")
+            builder.setMessage("This is already reported,do you want to report again?")
                 .setCancelable(true)
                 .setPositiveButton("Yes") { _,_ ->
                     holder.reportedButton.visibility = View.GONE
