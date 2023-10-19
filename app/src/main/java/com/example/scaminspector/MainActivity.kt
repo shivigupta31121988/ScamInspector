@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+       // val setSmsAppIntent = Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT)
+        //setSmsAppIntent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, packageName)
+        //startActivityForResult(setSmsAppIntent, R.layout.activity_main)
+
         setContentView(R.layout.activity_main)
 
         if (ContextCompat.checkSelfPermission(this, permission)
